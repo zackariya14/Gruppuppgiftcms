@@ -1,9 +1,11 @@
 import { getStoryblokApi } from "@storyblok/react/rsc";
 
-export class CMS {
-  
-  static isProduction = process.env.NODE_ENV === "production";
-  static isDevelopment = process.env.NODE_ENV === "development";
+export class StoryblokCMS {
+
+  static IS_PROD = process.env.NODE_ENV === "production";
+  static IS_DEV = process.env.NODE_ENV === "development";
+  static VERSION = this.IS_PROD ? "published" : "draft";
+  static TOKEN = process.env.NEXT_PUBLIC_PREVIEW_STORYBLOK_TOKEN;
 
   static async sbGet(path, params) {
     return getStoryblokApi().get(path, params);
@@ -13,16 +15,13 @@ export class CMS {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
-    const { data } = await getStoryblokApi().get(
-      storyUrl,
-      this.getDefaultSBParams()
-    );
+    const { data } = await this.sbGet(storyUrl, this.getDefaultSBParams());
     return data.story;
   }
 
   static getDefaultSBParams() {
     return {
-      version: "draft",
+      version: this.VERSION,
       resolve_links: "url",
       cv: Date.now(),
     };
@@ -33,10 +32,22 @@ export class CMS {
     return data.story;
   }
 
+  static async generateMetaFromStory(slug) {
+    //Read nextjs metadata docs
+    //1. Fetch the story from Storyblok (make sure that page content-type has metadata)
+    //2. Extract the metadata from the story
+    //3. Return the metadata object
+    return {
+      title: "Title",
+      description: "Description",
+    }
+  }
+
+  //Generates static paths from Links API endpoint
   static async getStaticPaths() {
     try {
       let sbParams = {
-        version: "draft",
+        version: this.VERSION,
       };
 
       let { data } = await this.sbGet("cdn/links/", sbParams);

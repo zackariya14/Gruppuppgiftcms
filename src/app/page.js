@@ -1,11 +1,14 @@
-import { CMS } from "@/utils/cms";
+import { StoryblokCMS } from "@/utils/cms";
 import { notFound } from "next/navigation";
 import StoryblokStory from "@storyblok/react/story";
-import { unstable_cache } from "next/cache";
 
-export default async function StartPage({params}) {
+export async function generateMetadata() {
+  return StoryblokCMS.generateMetaFromStory("home");
+}
+
+export default async function StartPage({}) {
   try {
-    const currentStory = await CMS.getStory({ slug: ["home"] });
+    const currentStory = await StoryblokCMS.getStory({ slug: ["home"] });
     if (!currentStory) throw new Error();
 
     return <StoryblokStory story={currentStory} />;
@@ -13,4 +16,4 @@ export default async function StartPage({params}) {
     notFound();
   }
 }
-export const dynamic = CMS.isDevelopment ? "force-dynamic" : "force-static";
+export const dynamic = StoryblokCMS.isDevelopment ? "force-dynamic" : "force-static";

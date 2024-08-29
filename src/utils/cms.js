@@ -1,6 +1,7 @@
-import { getStoryblokApi, useStoryblokApi } from "@storyblok/react/rsc";
+import { getStoryblokApi } from "@storyblok/react/rsc";
 
 export class CMS {
+  
   static isProduction = process.env.NODE_ENV === "production";
   static isDevelopment = process.env.NODE_ENV === "development";
 
@@ -12,7 +13,7 @@ export class CMS {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
-    const { data } = await useStoryblokApi().get(
+    const { data } = await getStoryblokApi().get(
       storyUrl,
       this.getDefaultSBParams()
     );

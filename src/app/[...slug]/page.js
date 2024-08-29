@@ -22,3 +22,5 @@ export default async function CMSPage({ params }) {
     notFound();
   }
 }
+
+export const dynamic = CMS.isDevelopment ? "force-dynamic" : "force-static";

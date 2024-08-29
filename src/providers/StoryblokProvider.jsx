@@ -4,10 +4,12 @@ import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 
 import Page from "@/components/Page";
 import Teaser from "@/components/Teaser";
+import Hero from "@/components/Hero";
 
 const components = {
   "page": Page,
   "teaser":Teaser,
+  "hero": Hero,
 }
 
 storyblokInit({

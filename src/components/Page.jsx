@@ -1,5 +1,4 @@
-import { storyblokEditable, StoryblokComponent } from "@storyblok/react/rsc";
-
+import { StoryblokComponent } from "@storyblok/react/rsc";
 export default function Page({ blok }) {
     return (
         <main>

@@ -30,6 +30,7 @@ export default async function CMSPage({ params }) {
   }
 }
 
+//Force dynamic rendering in development and Visual editor
 export const dynamic = StoryblokCMS.isDevelopment
   ? "force-dynamic"
   : "force-static";

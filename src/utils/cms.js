@@ -7,15 +7,11 @@ export class StoryblokCMS {
   static VERSION = this.IS_PROD ? "published" : "draft";
   static TOKEN = process.env.NEXT_PUBLIC_PREVIEW_STORYBLOK_TOKEN;
 
-  static async sbGet(path, params) {
-    return getStoryblokApi().get(path, params);
-  }
-
   static async getStory(params) {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
-    const { data } = await this.sbGet(storyUrl, this.getDefaultSBParams());
+    const { data } = await getStoryblokApi().get(storyUrl, this.getDefaultSBParams());
     return data.story;
   }
 
@@ -28,12 +24,13 @@ export class StoryblokCMS {
   }
 
   static async getConfig() {
-    const { data } = await this.sbGet("cdn/stories/config");
+    const { data } = await getStoryblokApi().get("cdn/stories/config");
     return data.story;
   }
 
   static async generateMetaFromStory(slug) {
     //Read nextjs metadata docs
+    //1. Add Seo fields to Page component in storyblok (in own tab)
     //1. Fetch the story from Storyblok (make sure that page content-type has metadata)
     //2. Extract the metadata from the story
     //3. Return the metadata object
@@ -50,7 +47,7 @@ export class StoryblokCMS {
         version: this.VERSION,
       };
 
-      let { data } = await this.sbGet("cdn/links/", sbParams);
+      let { data } = await getStoryblokApi().get("cdn/links/", sbParams);
       let paths = [];
 
       Object.keys(data.links).forEach((linkKey) => {

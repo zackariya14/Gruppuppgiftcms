@@ -7,6 +7,12 @@ export async function generateMetadata() {
 }
 
 export default async function StartPage({}) {
+
+  const currentStory = await StoryblokCMS.getStory({ slug: ["home"] });
+  if (!currentStory) throw new Error();
+
+  return <StoryblokStory story={currentStory} />;
+
   try {
     const currentStory = await StoryblokCMS.getStory({ slug: ["home"] });
     if (!currentStory) throw new Error();

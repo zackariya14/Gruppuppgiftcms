@@ -1,6 +1,5 @@
 import { getStoryblokApi } from "@storyblok/react/rsc";
 export class StoryblokCMS {
-
   static IS_PROD = process.env.NODE_ENV === "production";
   static IS_DEV = process.env.NODE_ENV === "development";
   static VERSION = this.IS_PROD ? "published" : "draft";
@@ -10,7 +9,10 @@ export class StoryblokCMS {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
-    const { data } = await getStoryblokApi().get(storyUrl, this.getDefaultSBParams());
+    const { data } = await getStoryblokApi().get(
+      storyUrl,
+      this.getDefaultSBParams()
+    );
     return data.story;
   }
 
@@ -23,7 +25,10 @@ export class StoryblokCMS {
   }
 
   static async getConfig() {
-    const { data } = await getStoryblokApi().get("cdn/stories/config");
+    const { data } = await getStoryblokApi().get(
+      "cdn/stories/config",
+      this.getDefaultSBParams()
+    );
     return data.story;
   }
 
@@ -36,7 +41,7 @@ export class StoryblokCMS {
     return {
       title: "Title",
       description: "Description",
-    }
+    };
   }
 
   //Generates static paths from Links API endpoint

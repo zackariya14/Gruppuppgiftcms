@@ -13,10 +13,7 @@ export class StoryblokCMS {
     if (!params) return {};
     const uri = params?.slug?.join("/");
     const storyUrl = "cdn/stories/" + uri;
-    const { data } = await this.sbGet(
-      storyUrl,
-      this.getDefaultSBParams()
-    );
+    const { data } = await this.sbGet(storyUrl, this.getDefaultSBParams());
     return data.story;
   }
 
@@ -31,7 +28,7 @@ export class StoryblokCMS {
   static async getConfig() {
     try {
       const { data } = await this.sbGet(
-        "cdn/stories/config",
+        "cdn/stories/global-config",
         this.getDefaultSBParams()
       );
       return data?.story;

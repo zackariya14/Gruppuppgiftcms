@@ -1,12 +1,19 @@
-//Uses config set global components for the layout
+import Header from "@/components/nestable/Header"; 
+
 export default function Layout({ config, children }) {
-    //Create at least a header and footer component
-    //Use console.log to determine blok object structure if unsure...
-    return (
-        <>
-            <header></header>
-            <main>{children}</main>
-            <footer></footer>
-        </>
-    );
+
+  return (
+    <>
+      {config && config.content.Header?.length > 0 ? (
+        config.content.Header.map((blok) => (
+          <Header key={blok._uid} blok={blok} />
+        ))
+      ) : (
+        <p>No header available</p>
+      )}
+
+      <main>{children}</main>
+
+    </>
+  );
 }

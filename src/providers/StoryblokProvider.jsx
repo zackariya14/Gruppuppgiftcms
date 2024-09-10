@@ -12,6 +12,7 @@ import Grid from "@/components/nestable/Grid";
 import Breadcrumbs from "@/components/nestable/Breadcrumbs";
 import ContentBlock from "@/components/nestable/ContentBlock";
 import TextSection from "@/components/nestable/TextSection";
+import Footer from "@/components/nestable/Footer";
 
 const components = {
   "page": Page,
@@ -23,7 +24,8 @@ const components = {
   "grid": Grid,
   "Breadcrumbs": Breadcrumbs,
   "ContentBlock": ContentBlock,
-  "TextSection": TextSection
+  "TextSection": TextSection,
+  "Footer": Footer
 };
 
 storyblokInit({

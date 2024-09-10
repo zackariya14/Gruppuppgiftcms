@@ -13,8 +13,10 @@ import Breadcrumbs from "@/components/nestable/Breadcrumbs";
 import ContentBlock from "@/components/nestable/ContentBlock";
 import TextSection from "@/components/nestable/TextSection";
 import Hero01 from "@/components/nestable/Hero01";
+import Hero03 from "@/components/nestable/Hero03";
 
 const components = {
+  
   "page": Page,
   "teaser": Teaser,
   "richtext": RichTextDefault,
@@ -25,7 +27,8 @@ const components = {
   "Breadcrumbs": Breadcrumbs,
   "ContentBlock": ContentBlock,
   "TextSection": TextSection,
-  "Hero01": Hero01
+  "Hero01": Hero01,
+  "Hero03": Hero03
 };
 
 storyblokInit({
@@ -35,5 +38,5 @@ storyblokInit({
 });
 
 export default function StoryblokProvider({ children }) {
-  return children;
+  return  children; 
 }

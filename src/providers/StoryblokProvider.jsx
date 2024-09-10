@@ -13,6 +13,7 @@ import Breadcrumbs from "@/components/nestable/Breadcrumbs";
 import ContentBlock from "@/components/nestable/ContentBlock";
 import TextSection from "@/components/nestable/TextSection";
 import Footer from "@/components/nestable/Footer";
+import Hero01 from "@/components/nestable/Hero01";
 
 const components = {
   "page": Page,
@@ -25,7 +26,8 @@ const components = {
   "Breadcrumbs": Breadcrumbs,
   "ContentBlock": ContentBlock,
   "TextSection": TextSection,
-  "Footer": Footer
+  "Footer": Footer,
+  "Hero01": Hero01
 };
 
 storyblokInit({

@@ -5,6 +5,6 @@ export default function Robots() {
           allow: '/',
           disallow: '/private/',
         },
-        sitemap: '',
+        sitemap: 'http://localhost:3000/sitemap.xml',
       }
 }

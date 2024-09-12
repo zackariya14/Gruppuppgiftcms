@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Header({ blok }) {
   return (
-    <header className="bg-gray-100">
+    <header className="bg-gray-100 border-b border-gray-300"> {/* Lägg till en border-b här */}
       <div className="bg-black text-white py-2 px-6 flex justify-between items-center text-sm">
         <span>USD</span>
         <span>FREE SHIPPING ON ALL ORDERS ABOVE 50$.</span>

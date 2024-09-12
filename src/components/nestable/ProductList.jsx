@@ -48,26 +48,31 @@ export default function ProductList({ blok }) {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts
           .filter(product => product.content.product_name && product.content.price && product.content.image)
           .map((product) => (
-            <div key={product.uuid} className="border p-4 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold mb-4">{product.content.product_name}</h2>
-
-              {product.content.image && (
+            <div 
+              key={product.uuid} 
+              className="border p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+            >
+              <Link href={`/products/${product.slug}`}>
                 <img
                   src={`https:${product.content.image}`}
                   alt={product.content.product_name}
-                  className="w-full h-64 object-cover mb-4 rounded-md"
+                  className="w-full h-48 object-cover mb-4 rounded-md cursor-pointer hover:opacity-80 transition-opacity duration-300"
                 />
-              )}
-
-              <p className="text-lg font-semibold mb-4">Price: {product.content.price} USD</p>
-
-              <Link href={`/products/${product.slug}`} className="block text-center bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
-                View Product
               </Link>
+
+              <h2 className="text-lg font-semibold mb-2 text-center">{product.content.product_name}</h2>
+
+              <p className="text-sm text-gray-600 mb-2 text-center">
+                {product.content.description.length > 100 
+                  ? `${product.content.description.slice(0, 100)}...` 
+                  : product.content.description}
+              </p>
+
+              <p className="text-lg font-semibold mb-4 text-center">{product.content.price} $</p>
             </div>
           ))}
       </div>

@@ -5,6 +5,6 @@ export default function Robots() {
           allow: '/',
           disallow: '/private/',
         },
-        sitemap: 'http://localhost:3000/sitemap.xml',
+        sitemap: 'https://gruppuppgiftcms.vercel.app/sitemap.xml',
       }
 }

@@ -17,7 +17,7 @@ export default async function sitemap() {
 
     console.log(pages)
 
-    const SETTINGS_SITE_URL = "https://test.se/"
+    const SETTINGS_SITE_URL = "https://gruppuppgiftcms.vercel.app/"
     const sitemap = pages.map((page) => {
       
       //Filter emptpy items and join nested routes 

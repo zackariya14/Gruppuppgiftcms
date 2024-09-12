@@ -1,4 +1,5 @@
 import { getStoryblokApi } from "@storyblok/react/rsc";
+
 export class StoryblokCMS {
   static IS_PROD = process.env.NODE_ENV === "production";
   static IS_DEV = process.env.NODE_ENV === "development";
@@ -10,11 +11,35 @@ export class StoryblokCMS {
   }
 
   static async getStory(params) {
-    if (!params) return {};
-    const uri = params?.slug?.join("/");
-    const storyUrl = "cdn/stories/" + uri;
-    const { data } = await this.sbGet(storyUrl, this.getDefaultSBParams());
-    return data.story;
+    if (!params || !params.slug) return {};
+  
+    const uri = Array.isArray(params.slug) ? params.slug.join("/") : params.slug;
+  
+    console.log("Fetching Storyblok story for slug:", uri);
+  
+    try {
+      const { data } = await this.sbGet("cdn/stories/" + uri, this.getDefaultSBParams());
+      console.log("Fetched story data:", data);
+      return data.story;
+    } catch (error) {
+      console.error("Error fetching story from Storyblok:", error.response);
+      throw error;
+    }
+  }
+  
+  
+
+  static async getAllProducts() {
+    try {
+      const { data } = await this.sbGet("cdn/stories", {
+        ...this.getDefaultSBParams(),
+        starts_with: "products/",
+      });
+      return data.stories; 
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+      return [];
+    }
   }
 
   static getDefaultSBParams() {
@@ -39,18 +64,21 @@ export class StoryblokCMS {
   }
 
   static async generateMetaFromStory(slug) {
-    //Read nextjs metadata docs
-    //1. Add Seo fields to Page component in storyblok (in own tab)
-    //1. Fetch the story from Storyblok (make sure that page content-type has metadata)
-    //2. Extract the metadata from the story
-    //3. Return the metadata object
-    return {
-      title: "Title",
-      description: "Description",
-    };
+    try {
+      const story = await this.getStory({ slug });
+      return {
+        title: story.content?.seo_title || "Title",
+        description: story.content?.seo_description || "Description",
+      };
+    } catch (error) {
+      console.log("METADATA ERROR", error);
+      return {
+        title: "Title",
+        description: "Description",
+      };
+    }
   }
 
-  //Generates static paths from Links API endpoint
   static async getStaticPaths() {
     try {
       let sbParams = {

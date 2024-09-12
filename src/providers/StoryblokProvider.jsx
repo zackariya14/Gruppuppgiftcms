@@ -15,9 +15,13 @@ import TextSection from "@/components/nestable/TextSection";
 import Footer from "@/components/nestable/Footer";
 import Hero01 from "@/components/nestable/Hero01";
 import Hero03 from "@/components/nestable/Hero03";
+import Landing from "@/components/content-types/Landing";
+import ProductPage from "@/components/content-types/ProductPage";
+import ProductList from "@/components/nestable/ProductList";
 
 const components = {
   "page": Page,
+  "Landing": Landing,
   "teaser": Teaser,
   "richtext": RichTextDefault,
   "Header": Header,         
@@ -29,7 +33,9 @@ const components = {
   "TextSection": TextSection,
   "Footer": Footer,
   "Hero01": Hero01,
-  "Hero03": Hero03
+  "Hero03": Hero03,
+  "ProductPage": ProductPage,
+  "ProductList": ProductList
 };
 
 storyblokInit({

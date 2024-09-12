@@ -2,7 +2,6 @@ import Header from "@/components/nestable/Header";
 import Footer from "@/components/nestable/Footer";
 
 export default function Layout({ config, children }) {
-  console.log("Config in Layout:", config); // Logga hela config för felsökning
 
   const headerData = config?.content?.Header ? config.content.Header[0] : null; // Hämta Header-objektet
   const footerData = config?.content?.Footer ? config.content.Footer[0] : null; // Hämta Footer-objektet

@@ -36,7 +36,11 @@ const components = {
   "TextSection": TextSection,
   "Footer": Footer,
   "Hero01": Hero01,
-  "Hero03": Hero03
+  "Hero03": Hero03,
+  "FullWidthImage": FullWidthImage,
+  "about": About,
+  "ProductPage": ProductPage,
+  "ProductList": ProductList
 };
 
 storyblokInit({

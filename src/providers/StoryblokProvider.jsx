@@ -15,6 +15,9 @@ import TextSection from "@/components/nestable/TextSection";
 import Footer from "@/components/nestable/Footer";
 import Hero01 from "@/components/nestable/Hero01";
 import Hero03 from "@/components/nestable/Hero03";
+import FullWidthImage from "@/components/nestable/FullWidthImage";
+import About from "@/components/nestable/About";
+
 
 const components = {
   "page": Page,
@@ -29,7 +32,9 @@ const components = {
   "TextSection": TextSection,
   "Footer": Footer,
   "Hero01": Hero01,
-  "Hero03": Hero03
+  "Hero03": Hero03,
+  "FullWidthImage": FullWidthImage,
+  "about": About,
 };
 
 storyblokInit({

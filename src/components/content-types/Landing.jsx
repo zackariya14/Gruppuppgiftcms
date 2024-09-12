@@ -1,10 +1,13 @@
-import ProductList from "../nestable/ProductList";
+import ProductList from "@/components/nestable/ProductList"; 
 
-export default function Landing() {
+const Landing = ({ blok }) => {
+ 
   return (
-    <main>
-      <h1>Välkommen till vår butik!</h1>
-      <ProductList /> 
-    </main>
+    <div>
+      <h1>{blok.title}</h1> 
+      <ProductList products={blok.products} /> 
+    </div>
   );
-}
+};
+
+export default Landing;

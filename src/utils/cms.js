@@ -15,11 +15,11 @@ export class StoryblokCMS {
   
     const uri = Array.isArray(params.slug) ? params.slug.join("/") : params.slug;
   
-    console.log("Fetching Storyblok story for slug:", uri);
+    // console.log("Fetching Storyblok story for slug:", uri);
   
     try {
       const { data } = await this.sbGet("cdn/stories/" + uri, this.getDefaultSBParams());
-      console.log("Fetched story data:", data);
+      // console.log("Fetched story data:", data);
       return data.story;
     } catch (error) {
       console.error("Error fetching story from Storyblok:", error.response);
